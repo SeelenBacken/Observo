@@ -1,1 +1,1 @@
-from apprentice.Apprentice import Apprentice
+from apprentice.__main__ import Apprentice
