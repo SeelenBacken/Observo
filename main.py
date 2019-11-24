@@ -17,7 +17,6 @@ configs = {
 print('------Welcome to Observo------')
 # term = Terminator()
 conf = Confuzius()
-# discordObserver = Apprentice()
 
 client = discord.Client()
 
@@ -28,28 +27,17 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    messageList = getMessageList(message)
     if message.author == client.user:
         return
     elif message.content == '$test':
-        await message.channel.send('Erfolg du Fotze')
+        await message.channel.send('Erfolg')
     else:
-        print('')
+        apprentice = Apprentice.Apprentice(conf.getDBHost(), conf.getDBUsername(), conf.getDBPassword(), conf.getDB())
+        apprentice.newMessage(message)
 
 def getTimeString():
     now = datetime.datetime.now()
     return '[{}.{}.{}-{}:{}:{}] '.format(now.year, now.month, now.day, now.hour, now.minute, now.second)
-
-def getMessageList(message):
-    return {
-        'guildID': message.guild.id,
-        'guildName': message.guild.name,
-        'channelID': message.channel.id,
-        'channelName': message.channel.name,
-        'roleID': message.author.roles[-1].id,
-        'roleName': message.author.roles[-1].name,
-        'datetime': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    }
 
 
 client.run(conf.getToken())

@@ -10,12 +10,26 @@ class Confuzius:
     def getToken(self):
         return self.cfg['Discord']['Token']
 
+    def getDBHost(self):
+        return self.cfg['DB-Settings']['Host']
+
+    def getDBUsername(self):
+        return self.cfg['DB-Settings']['Username']
+
+    def getDBPassword(self):
+        return self.cfg['DB-Settings']['Password']
+
+    def getDB(self):
+        return self.cfg['DB-Settings']['Database']
+
     def firstLaunch(self, ymlfileStream):
         yaml.add_representer(type(None), self.represent_none)
         basic = {
             'DB-Settings': {
+                'Host': None,
                 'Username': None,
-                'Password': None
+                'Password': None,
+                'Database': None
             },
             'Discord':
                 {'Token': None}
