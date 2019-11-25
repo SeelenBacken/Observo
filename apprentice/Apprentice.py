@@ -8,10 +8,18 @@ class Apprentice:
 
     def newMessage(self, message):
         mL = getMessageList(message)
-        dbInsert.insertGuild(self.cursor, mL['guildID'], mL['icon'], ml['ownerID'], mL['guildName'])
+        dbInsert.insertGuild(self.cursor, mL['guildID'], mL['icon'],\
+                             mL['ownerID'], mL['guildName'])
         dbInsert.insertChannel(self.cursor, mL['channelID'], mL['channelName'])
-        if dbCheck.hasColor(self.cursor, mL['color']):
-            dbInsert.insertColor(self.cursor, )
+        if not dbCheck.hasColor(self.cursor, mL['color']):
+            dbInsert.insertColor(self.cursor, mL['color'])
+        dbInsert.insertMessage(self.cursor, mL['datetime'], mL['guildID'],\
+                               mL['channelID'])
+        dbInsert.insertRole(self.cursor, mL['roleID'], mL['roleName'],\
+                            dbSelect.getColorID(self.cursor, mL['color']))
+        dbInsert.insertRoleList(self.cursor, dbSelect.getLastID(self.cursor),\
+                                mL['roleID'])
+        
 
 
 
