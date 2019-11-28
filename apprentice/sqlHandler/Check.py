@@ -6,3 +6,10 @@ def hasColor(cursor, color):
         return True
     else:
         return False
+    
+def hasRole(cursor, roleID):
+    result = dbSelect.getRole(cursor, roleID)
+    if result is not None:
+        return True
+    else:
+        return False

@@ -7,6 +7,9 @@ def getChannelIDs(cursor):
 def getRoleIDs(cursor):
     return select(cursor, 'ID', 'Role')
 
+def getRole(cursor, roleID):
+    return search(cursor, 'Role', 'ID', roleID)
+
 def getColorIDs(cursor):
     return select(cursor, 'ID', 'Color')
 
@@ -22,4 +25,8 @@ def getColorID(cursor, color):
 
 def select(cursor, column, table):
     cursor.execute('SELECT {} FROM {}'.format(column, table))
+    return cursor.fetchall()
+
+def search(cursor, table, column, searchTerm):
+    cursor.execute('SELECT * FROM {} WHERE {} = {}'.format(table, column, searchTerm))
     return cursor.fetchall()
