@@ -17,25 +17,29 @@ configs = {
 print('------Welcome to Observo------')
 # term = Terminator()
 conf = Confuzius()
-
 client = discord.Client()
 
 
 @client.event
 async def on_ready():
+    """ Called when succesfully logged in through discord auth token."""
     print(getTimeString() + 'Logged in as {0.user}'.format(client))
 
 @client.event
 async def on_message(message):
+    """ Called when a message is send."""
     if message.author == client.user:
         return
     elif message.content == '$test':
         await message.channel.send('Erfolg')
     else:
-        apprentice = Apprentice.Apprentice(conf.getDBHost(), conf.getDBUsername(), conf.getDBPassword(), conf.getDB())
+        apprentice = Apprentice.Apprentice(conf.getDBHost(),\
+                                           conf.getDBUsername(),\
+                                           conf.getDBPassword(), conf.getDB())
         apprentice.newMessage(message)
 
 def getTimeString():
+    """ This is just here for the Console output."""
     now = datetime.datetime.now()
     return '[{}.{}.{}-{}:{}:{}] '.format(now.year, now.month, now.day, now.hour, now.minute, now.second)
 
