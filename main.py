@@ -30,7 +30,9 @@ async def on_message(message):
     """ Called when a message is send."""
     if message.author == client.user:
         return
-    elif message.content == '$test':
+    elif message.content == '$month':
+        await message.channel.send('Noch ein Erfolg')
+    elif message.content == '$week':
         await message.channel.send('Erfolg')
     else:
         apprentice = Apprentice.Apprentice(conf.getDBHost(),\
