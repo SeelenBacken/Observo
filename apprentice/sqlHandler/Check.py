@@ -13,3 +13,17 @@ def hasRole(cursor, roleID):
         return True
     else:
         return False
+
+def hasGuild(cursor, guildID):
+    result = dbSelect.getGuild(cursor, guildID)
+    if result is not None:
+        return True
+    else:
+        return False
+    
+def hasChannel(cursor, channelID):
+    result = dbSelect.getChannel(cursor, channelID)
+    if result is not None:
+        return True
+    else:
+        return False

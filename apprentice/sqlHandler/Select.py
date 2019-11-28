@@ -1,8 +1,14 @@
 def getGuildIDs(cursor):
     return select(cursor, 'ID', 'Guild')
 
+def getGuild(cursor, guildID):
+    return search(cursor, 'Guild', 'ID', guildID)
+
 def getChannelIDs(cursor):
     return select(cursor, 'ID', 'Channel')
+
+def getChannel(cursor, channelID):
+    return search(cursor, 'Channel', 'ID', channelID)
 
 def getRoleIDs(cursor):
     return select(cursor, 'ID', 'Role')
